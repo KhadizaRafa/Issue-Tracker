@@ -13,7 +13,11 @@ function submitIssue(e) {
   if (localStorage.getItem('issues')){
     issues = JSON.parse(localStorage.getItem('issues'));
   }
-  issues.push(issue);
+  if(issue.description || issue.assignedTo)
+    issues.push(issue);
+  else
+    alert("Please provide all the input fields");
+
   localStorage.setItem('issues', JSON.stringify(issues));
 
   document.getElementById('issueInputForm').reset();
